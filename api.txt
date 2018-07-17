@@ -1,0 +1,181 @@
+Verb: POST
+Path: /venues
+Query Params: n/a
+Body: (json)
+{
+	“city”: “san jose”,
+	“address”: “8912 West 4th Avenue, San Jose CA 09123”,
+	“description”: “quaint british dive bar with strong drinks and mean waiters”
+}
+Returns: n/a
+
+-----
+
+Verb: GET
+Path: /venues
+Query Params: ?city=san_jose&sport=soccer
+Body: n/a
+Returns: (json)
+{
+	“venue_ids”: [0,123,1]
+}
+
+-----
+
+Verb: GET
+Path: /venues/{venue_id}
+Query Params: n/a
+Body: n/a
+Returns: (json)
+{
+	“city”: “san jose”,
+	“address”: “8912 West 4th Avenue, San Jose CA 09123”,
+	“description”: “quaint british dive bar with strong drinks and mean waiters”
+}
+
+-----
+
+Verb: POST 
+Path: /events
+Body: (json)
+{
+	“title”: “World Cup Finals! ⚽️”
+	“sport”: “soccer”
+	“city”: “san jose”
+	“start_time": "2018-07-22 09:30"
+}
+
+-----
+
+Verb: GET 
+Path: /events
+Query Params: ?city=san_jose&sport=soccer&start=2018-07-22_09:30
+Body: n/a 
+Returns: (json)
+{
+	“event_ids”: [6, 123, 7]
+}
+
+-----
+
+Verb: GET 
+Path: /events/{event_id}
+Query Params: n/a
+Body: n/a 
+Returns: (json)
+{
+	“title”: “World Cup Finals! (soccerball_emoji)”
+	“sport”: “soccer”
+	“city”: “san jose”
+	“start_time": "2018-07-22 09:30"
+}
+
+-----
+
+Verb: POST
+Path: /users
+Query Params: n/a
+Body: (json)
+{
+	“name” : “Jon Hendergoob”
+	“email” : “goob@goob.goob”
+	“sport_interests” : “soccer, football”,
+	“city_interests”: “san francisco, oakland, san mateo”
+}
+Returns: n/a
+
+-----
+
+Verb: GET
+Path: /users
+Query Params: ?sport=soccer&city=san_mateo
+Body: n/a
+Returns: (json)
+{
+	“user_ids”: [123,12]
+}
+
+-----
+
+Verb: GET
+Path /users/{user_id}
+Query Params:n/a
+Body: n/a
+Returns: (json)
+{
+	“name” : “Jon Hendergoob”
+	“email” : “goob@goob.goob”
+	“sport_interests” : “soccer, football”,
+	“city_interest”: “san francisco, oakland, san mateo”
+}
+
+-----
+
+Verb: POST
+Path: /watchers
+Query Params: n/a
+Body: (json)
+{
+	“user_id”: 192,
+	“event_id”: 123
+}
+
+Returns: n/a
+
+-----
+
+Verb: GET
+Path: /watchers
+Query Params: ?user_id=99
+Body: n/a
+Returns: (json)
+{
+	“event_ids”: [123,1,6]
+}
+
+-----
+
+Verb: GET
+Path: /watchers
+Query Params: ?event_id=99
+Body: n/a
+Returns: (json)
+{
+	“user_ids”: [123,04]
+}
+
+-----
+
+Verb: POST
+Path: /hosters
+Query Params: n/a
+Body: (json)
+{
+	“venue_id”: 192,
+	“event_id”: 123
+}
+Returns: n/a
+
+-----
+
+Verb: GET
+Path: /hosters
+Query Params: ?venue_id=99
+Body: n/a
+Returns: (json)
+{
+	“event_ids”: [123,1,6]
+}
+
+-----
+
+Verb: GET
+Path: /hosters
+Query Params: ?event_id=99
+Body: n/a
+Returns: (json)
+{
+	“venue_ids”: [9, 55]
+}
+
+
