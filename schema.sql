@@ -10,7 +10,7 @@ city_interests VARCHAR(200));
 CREATE TABLE events (
 id SERIAL,
 title VARCHAR(100),
-sport VARCHAR(100),
+type VARCHAR(100),
 city VARCHAR(100),
 start_time DATE);
 

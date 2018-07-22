@@ -40,7 +40,7 @@ Path: /events
 Body: (json)
 {
 	“title”: “World Cup Finals! ⚽️”
-	“sport”: “soccer”
+	“type”: “soccer”
 	“city”: “san jose”
 	“start_time": "2018-07-22 09:30"
 }
@@ -65,7 +65,7 @@ Body: n/a
 Returns: (json)
 {
 	“title”: “World Cup Finals! (soccerball_emoji)”
-	“sport”: “soccer”
+	“type”: “soccer”
 	“city”: “san jose”
 	“start_time": "2018-07-22 09:30"
 }
@@ -79,7 +79,7 @@ Body: (json)
 {
 	“name” : “Jon Hendergoob”
 	“email” : “goob@goob.goob”
-	“sport_interests” : “soccer, football”,
+	“type_interests” : “soccer, football”,
 	“city_interests”: “san francisco, oakland, san mateo”
 }
 Returns: n/a
@@ -105,7 +105,7 @@ Returns: (json)
 {
 	“name” : “Jon Hendergoob”
 	“email” : “goob@goob.goob”
-	“sport_interests” : “soccer, football”,
+	“type_interests” : “soccer, football”,
 	“city_interest”: “san francisco, oakland, san mateo”
 }
 
