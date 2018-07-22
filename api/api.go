@@ -14,7 +14,13 @@ func VenuesHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 
 	case "GET":
-		err, res := db.GetVenues()
+		res, err := db.GetVenues()
+		if err != nil {
+			log.Print("could not get venues", "err", err.Error())
+			w.WriteHeader(500)
+			return
+		}
+		w.Write(res)
 
 	case "POST":
 		body, err := ioutil.ReadAll(r.Body)

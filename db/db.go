@@ -1,7 +1,10 @@
 package db
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 
 	"database/sql"
@@ -81,7 +84,33 @@ func InsertVenue(venue models.Venue) error {
 	return err
 }
 
-func GetVenues() (error, string) {
+func GetVenues() ([]byte, error) {
 	rows, err := _db.Query(getVenues)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	buf := bytes.NewBuffer(nil)
+	v := models.Venue{}
+	var id int
+	for rows.Next() {
+		err := rows.Scan(&id, &v.Address, &v.City, &v.Description)
+		if err != nil {
+			log.Print(err.Error())
+			continue
+		}
+		b, err := json.Marshal(v)
+		if err != nil {
+			log.Print(err.Error())
+			continue
+		}
+		buf.Write(b)
+	}
+	err = rows.Err()
+	if err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 
 }
