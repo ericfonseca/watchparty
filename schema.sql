@@ -16,7 +16,8 @@ start_time DATE);
 
 CREATE TABLE venues (
 id SERIAL,
-city VARCHAR(100), address VARCHAR(150),
+city VARCHAR(100),
+address VARCHAR(150),
 description VARCHAR(300));
 
 CREATE TABLE watchers (

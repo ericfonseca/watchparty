@@ -8,13 +8,23 @@ import (
 
 	"github.com/ericfonseca/watchparty/db"
 	"github.com/ericfonseca/watchparty/models"
+	"github.com/gorilla/mux"
 )
 
 func VenuesHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 
 	case "GET":
-		res, err := db.GetVenues()
+		city := r.URL.Query().Get("city")
+		var err error
+		var res []byte
+		if city == "" {
+			res, err = db.GetVenues()
+
+		} else {
+			res, err = db.GetVenuesByCity(city)
+		}
+
 		if err != nil {
 			log.Print("could not get venues", "err", err.Error())
 			w.WriteHeader(500)
@@ -44,6 +54,23 @@ func VenuesHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		w.WriteHeader(200)
 	}
+}
+
+func VenuesByIDHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id := vars["id"]
+	if id == "" {
+		w.WriteHeader(404)
+		log.Print("could not get id from path")
+	}
+
+	res, err := db.GetVenueByID(id)
+	if err != nil {
+		log.Print("could not get venues", "err", err.Error())
+		w.WriteHeader(500)
+		return
+	}
+	w.Write(res)
 }
 
 func eventsHandler(w http.ResponseWriter, r *http.Request) {

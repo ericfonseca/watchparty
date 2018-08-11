@@ -13,8 +13,7 @@ Returns: n/a
 
 Verb: GET
 Path: /venues
-Query Params: ?city=san_jose&sport=soccer
-Body: n/a
+Query Params: ?city=san_jose
 Returns: (json)
 {
 	“venue_ids”: [0,123,1]

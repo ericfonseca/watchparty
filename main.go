@@ -1,16 +1,18 @@
 package main
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/ericfonseca/watchparty/api"
 	"github.com/ericfonseca/watchparty/db"
+	"github.com/gorilla/mux"
 )
 
 func main() {
 	db.Init()
 	defer db.Close()
-	http.HandleFunc("/api/venues", api.VenuesHandler)
-	log.Fatal(http.ListenAndServe("localhost:8000", nil))
+	r := mux.NewRouter()
+	r.HandleFunc("/api/venues", api.VenuesHandler)
+	r.HandleFunc("/api/venues/{id}", api.VenuesByIDHandler)
+	http.ListenAndServe(":8181", r)
 }
