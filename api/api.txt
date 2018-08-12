@@ -48,7 +48,7 @@ Body: (json)
 
 Verb: GET 
 Path: /events
-Query Params: ?city=san_jose&sport=soccer&start=2018-07-22_09:30
+Query Params: ?city=san_jose&type=soccer&start=2018-07-22_09:30
 Body: n/a 
 Returns: (json)
 {
@@ -78,21 +78,8 @@ Body: (json)
 {
 	“name” : “Jon Hendergoob”
 	“email” : “goob@goob.goob”
-	“type_interests” : “soccer, football”,
-	“city_interests”: “san francisco, oakland, san mateo”
 }
 Returns: n/a
-
------
-
-Verb: GET
-Path: /users
-Query Params: ?sport=soccer&city=san_mateo
-Body: n/a
-Returns: (json)
-{
-	“user_ids”: [123,12]
-}
 
 -----
 
@@ -177,4 +164,33 @@ Returns: (json)
 	“venue_ids”: [9, 55]
 }
 
+-----
+
+Verb: POST
+Path: /interests
+Query Params: n/a
+Body: (json)
+{
+	“type”: "soccer",
+	“city”: "san jose",
+	"user_id": 99
+}
+Returns: n/a
+
+-----
+
+Verb: GET
+Path: /interests
+Query Params: ?type=soccer&city=san_jose&user_id=00
+Body: n/a
+Returns: (json)
+{
+	[{
+	“type”: "soccer",
+	“city”: "san jose",
+	"user_id": 99
+	}]
+}
+
+-----
 

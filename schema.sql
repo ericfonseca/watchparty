@@ -3,9 +3,7 @@ CREATE DATABASE watch_party;
 CREATE TABLE users (
 id SERIAL,
 name VARCHAR(100),
-email VARCHAR(100),
-sport_interests VARCHAR(200),
-city_interests VARCHAR(200));
+email VARCHAR(100)));
 
 CREATE TABLE events (
 id SERIAL,
@@ -27,3 +25,8 @@ user_id INT);
 CREATE TABLE hosters (
 event_id INT,
 venue_id INT);
+
+CREATE TABLE interests (
+type VARCHAR(100),
+city VARCHAR(100),
+user_id INT);
