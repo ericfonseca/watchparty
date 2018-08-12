@@ -399,7 +399,7 @@ func GetInterests(event_type, city, user_id string) ([]byte, error) {
 
 	i := models.Interest{}
 	for rows.Next() {
-		err := rows.Scan(i.Type, i.City, i.UserID)
+		err := rows.Scan(&i.Type, &i.City, &i.UserID)
 		if err != nil {
 			log.Print(err.Error())
 			continue

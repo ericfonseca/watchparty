@@ -1,17 +1,30 @@
 #create venue
 curl -X POST http://localhost:8000/api/venues --data '{"city":"san jose","address":"8912 west 4th avenue, san jose ca 09123","description":"quaint british dive bar with strong drinks and mean waiters"}'
+#get venues
+curl http://localhost:8000/api/venues
 
 #create event
 curl -X POST http://localhost:8000/api/events --data '{"title":"world cup game","type":"soccer","city":"san jose","start_time":"2018-08-03 10:00"}'
+#get events
+curl http://localhost:8000/api/events
 
 #create user
 curl -X POST http://localhost:8000/api/users --data '{"name":"eric","email":"eric@watchparty.com"}'
+#get users
+curl http://localhost:8000/api/users
+
 
 #create watcher
 curl -X POST http://localhost:8000/api/watchers --data '{"event_id":1,"user_id":1}'
+#get watchers
+curl http://localhost:8000/api/watchers
 
 #create hoster
 curl -X POST http://localhost:8000/api/hosters --data '{"event_id":1,"venue_id":1}'
+#get hosters
+curl http://localhost:8000/api/hosters
 
 #create interest
 curl -X POST http://localhost:8000/api/interests --data '{"type":"soccer","city":"san jose","user_id":1}'
+#get interests
+curl http://localhost:8000/api/interests
