@@ -22,17 +22,17 @@ type User struct {
 }
 
 type Watcher struct {
-	EventID string `json:"event_id`
-	UserID  string `json:"user_id`
+	EventID int `json:"event_id"`
+	UserID  int `json:"user_id"`
 }
 
 type Hoster struct {
-	EventID string `json:"event_id`
-	VenueID string `json:"venue_id`
+	EventID int `json:"event_id"`
+	VenueID int `json:"venue_id"`
 }
 
 type Interest struct {
 	Type   string `json:"type"`
 	City   string `json:"city"`
-	UserID string `json:"user_id`
+	UserID int    `json:"user_id"`
 }

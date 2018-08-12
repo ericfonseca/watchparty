@@ -29,7 +29,7 @@ const (
 	insertEvent = `INSERT INTO events(title, type, city, start_time) VALUES($1, $2, $3, $4)`
 
 	getUsers   = `SELECT * FROM users`
-	insertUser = `INSERT INTO users(name, email, type_interests, city_interests VALUES($1, $2, $3, $4)`
+	insertUser = `INSERT INTO users(name, email) VALUES($1, $2)`
 
 	getWatchers   = `SELECT * FROM watchers`
 	insertWatcher = `INSERT INTO watchers(event_id, user_id) VALUES ($1, $2)`

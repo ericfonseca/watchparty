@@ -21,5 +21,5 @@ func main() {
 	r.HandleFunc("/api/watchers", api.WatchersHandler)
 	r.HandleFunc("/api/hosters", api.HostersHandler)
 	r.HandleFunc("/api/interests", api.InterestsHandler)
-	http.ListenAndServe(":8181", r)
+	http.ListenAndServe(":8000", r)
 }
