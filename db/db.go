@@ -118,6 +118,8 @@ func GetVenues(id, city string) ([]byte, error) {
 	defer rows.Close()
 
 	buf := bytes.NewBuffer(nil)
+	buf.WriteByte('[')
+
 	v := models.Venue{}
 	for rows.Next() {
 		err := rows.Scan(&v.ID, &v.City, &v.Address, &v.Description)
@@ -130,12 +132,18 @@ func GetVenues(id, city string) ([]byte, error) {
 			log.Print(err.Error())
 			continue
 		}
-		buf.Write(b)
+		buf.Write(append(b, ','))
 	}
 	err = rows.Err()
 	if err != nil {
 		return nil, err
 	}
+
+	bufLen := buf.Len()
+	if bufLen > 1 {
+		buf.Truncate(bufLen - 1)
+	}
+	buf.WriteByte(']')
 	return buf.Bytes(), nil
 }
 
@@ -171,6 +179,8 @@ func GetEvents(id, city, eventType, startTime string) ([]byte, error) {
 	defer rows.Close()
 
 	buf := bytes.NewBuffer(nil)
+	buf.WriteByte('[')
+
 	e := models.Event{}
 	for rows.Next() {
 		err := rows.Scan(&e.ID, &e.Title, &e.Type, &e.City, &e.StartTime)
@@ -183,12 +193,18 @@ func GetEvents(id, city, eventType, startTime string) ([]byte, error) {
 			log.Print(err.Error())
 			continue
 		}
-		buf.Write(b)
+		buf.Write(append(b, ','))
 	}
 	err = rows.Err()
 	if err != nil {
 		return nil, err
 	}
+
+	bufLen := buf.Len()
+	if bufLen > 1 {
+		buf.Truncate(bufLen - 1)
+	}
+	buf.WriteByte(']')
 	return buf.Bytes(), nil
 }
 
@@ -213,6 +229,8 @@ func GetUsers(id string) ([]byte, error) {
 	defer rows.Close()
 
 	buf := bytes.NewBuffer(nil)
+	buf.WriteByte('[')
+
 	u := models.User{}
 	for rows.Next() {
 		err := rows.Scan(&u.ID, &u.Name, &u.Email)
@@ -225,12 +243,18 @@ func GetUsers(id string) ([]byte, error) {
 			log.Print(err.Error())
 			continue
 		}
-		buf.Write(b)
+		buf.Write(append(b, ','))
 	}
 	err = rows.Err()
 	if err != nil {
 		return nil, err
 	}
+
+	bufLen := buf.Len()
+	if bufLen > 1 {
+		buf.Truncate(bufLen - 1)
+	}
+	buf.WriteByte(']')
 	return buf.Bytes(), nil
 }
 
@@ -259,6 +283,8 @@ func GetWatchers(event_id, user_id string) ([]byte, error) {
 	defer rows.Close()
 
 	buf := bytes.NewBuffer(nil)
+	buf.WriteByte('[')
+
 	w := models.Watcher{}
 	for rows.Next() {
 		err := rows.Scan(&w.EventID, &w.UserID)
@@ -271,12 +297,18 @@ func GetWatchers(event_id, user_id string) ([]byte, error) {
 			log.Print(err.Error())
 			continue
 		}
-		buf.Write(b)
+		buf.Write(append(b, ','))
 	}
 	err = rows.Err()
 	if err != nil {
 		return nil, err
 	}
+
+	bufLen := buf.Len()
+	if bufLen > 1 {
+		buf.Truncate(bufLen - 1)
+	}
+	buf.WriteByte(']')
 	return buf.Bytes(), nil
 }
 
@@ -305,6 +337,8 @@ func GetHosters(event_id, venue_id string) ([]byte, error) {
 	defer rows.Close()
 
 	buf := bytes.NewBuffer(nil)
+	buf.WriteByte('[')
+
 	h := models.Hoster{}
 	for rows.Next() {
 		err := rows.Scan(&h.EventID, &h.VenueID)
@@ -317,12 +351,18 @@ func GetHosters(event_id, venue_id string) ([]byte, error) {
 			log.Print(err.Error())
 			continue
 		}
-		buf.Write(b)
+		buf.Write(append(b, ','))
 	}
 	err = rows.Err()
 	if err != nil {
 		return nil, err
 	}
+
+	bufLen := buf.Len()
+	if bufLen > 1 {
+		buf.Truncate(bufLen - 1)
+	}
+	buf.WriteByte(']')
 	return buf.Bytes(), nil
 }
 
@@ -355,6 +395,8 @@ func GetInterests(event_type, city, user_id string) ([]byte, error) {
 	defer rows.Close()
 
 	buf := bytes.NewBuffer(nil)
+	buf.WriteByte('[')
+
 	i := models.Interest{}
 	for rows.Next() {
 		err := rows.Scan(i.Type, i.City, i.UserID)
@@ -367,11 +409,17 @@ func GetInterests(event_type, city, user_id string) ([]byte, error) {
 			log.Print(err.Error())
 			continue
 		}
-		buf.Write(b)
+		buf.Write(append(b, ','))
 	}
 	err = rows.Err()
 	if err != nil {
 		return nil, err
 	}
+
+	bufLen := buf.Len()
+	if bufLen > 1 {
+		buf.Truncate(bufLen - 1)
+	}
+	buf.WriteByte(']')
 	return buf.Bytes(), nil
 }
